@@ -48,10 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModels\AscoredDb1.generated.cs">
+    <Compile Include="DataModels\Ascored.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AscoredDb.tt</DependentUpon>
+      <DependentUpon>Ascored.tt</DependentUpon>
     </Compile>
     <Compile Include="DbService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,9 +103,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataModels\AscoredDb.tt">
+    <Content Include="DataModels\Ascored.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AscoredDb1.generated.cs</LastGenOutput>
+      <LastGenOutput>Ascored.generated.cs</LastGenOutput>
     </Content>
     <Content Include="LinqToDB.Templates\CopyMe.Access.tt.txt" />
     <Content Include="LinqToDB.Templates\CopyMe.DB2.tt.txt" />
