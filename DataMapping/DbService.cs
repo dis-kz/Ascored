@@ -20,11 +20,13 @@ namespace DataMapping
             db.Command.ExecuteNonQuery();
         }
 
+        //новая запись
         public void Insert<T>(T po)
         {
             db.Insert(po);
         }
 
+        //обновление записи
         public void Update<T>(T po, Func<T, Expression<Func<T, bool>>> predicate, Func<T, Expression<Func<T, T>>> setter) where T : class
         {
             if (setter == null)
@@ -36,5 +38,21 @@ namespace DataMapping
                 db.GetTable<T>().Update(predicate(po), setter(po));
             }
         }
+
+        #region Orders
+
+        public IEnumerable<Order> GetOrders()
+        {
+            var list = db.Orders.ToList();
+            return list;
+        }
+
+        public Order GetOrderById(Guid orderguid)
+        {
+            var order = db.Orders.Where(o => o.OrderGuid == orderguid).First();
+            return order;
+        }
+
+        #endregion
     }
 }
