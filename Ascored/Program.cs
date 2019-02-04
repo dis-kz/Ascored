@@ -6,6 +6,11 @@ using System.Windows.Forms;
 
 namespace Ascored
 {
+    //Это точка входа в программу.
+    //Отсюда запускаешь первую форму
+
+
+
     static class Program
     {
         /// <summary>
@@ -17,6 +22,8 @@ namespace Ascored
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new mainForm());
+
+            //Application.Run(new componentForm());
         }
     }
 }

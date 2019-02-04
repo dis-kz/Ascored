@@ -16,5 +16,14 @@ namespace Ascored
         {
             InitializeComponent();
         }
+
+        //событие нажатия кнопки на главной форме
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //строим
+            componentForm form = new componentForm();
+            //показываем в модальном режиме - короче, как диалог))
+            form.ShowDialog();
+        }
     }
 }
