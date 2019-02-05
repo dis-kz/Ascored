@@ -27,6 +27,15 @@ namespace Ascored
             ResetBindingSource();
         }
 
+        private void ResetBindingSource()
+        {
+            orderBindingSource.DataSource = db.GetOrders().OrderByDescending(o => o.ModifiedDate);
+
+            statusDataGridViewTextBoxColumn.DataSource = EnumAndCases.GetOrderStatus();
+            statusDataGridViewTextBoxColumn.DisplayMember = "Name";
+            statusDataGridViewTextBoxColumn.ValueMember = "Value";
+        }
+
         //Создать новый заказ
         private void btnCreateOrder_Click(object sender, EventArgs e)
         {
@@ -40,15 +49,6 @@ namespace Ascored
             }
         }
 
-        private void ResetBindingSource()
-        {
-            orderBindingSource.DataSource = db.GetOrders().OrderByDescending(o => o.ModifiedDate);
-
-            statusDataGridViewTextBoxColumn.DataSource = EnumAndCases.GetOrderStatus();
-            statusDataGridViewTextBoxColumn.DisplayMember = "Name";
-            statusDataGridViewTextBoxColumn.ValueMember = "Value";
-        }
-
         private void dataGridViewOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var order = orderBindingSource.Current as Order;
@@ -59,6 +59,20 @@ namespace Ascored
                     //обновить привязку
                     ResetBindingSource();
                 }
+            }
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if (!string.IsNullOrEmpty(txtSearch.Text))
+                {
+                    var filter = (IEnumerable<Order>)orderBindingSource.DataSource;
+                    filter = filter.Where(o => o.Customer.Contains(txtSearch.Text) || o.Number.Contains(txtSearch.Text));
+                    orderBindingSource.DataSource = filter;
+                }
+                else ResetBindingSource();
             }
         }
     }
