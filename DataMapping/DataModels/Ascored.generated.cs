@@ -14,6 +14,8 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 using LinqToDB;
+using LinqToDB.Common;
+using LinqToDB.Data;
 using LinqToDB.DataProvider.SqlServer;
 using LinqToDB.Extensions;
 using LinqToDB.Mapping;
@@ -40,15 +42,21 @@ namespace DataModels
 		public AscoredDB()
 		{
 			InitDataContext();
-			InitMappingSchema();
+			//InitMappingSchema();
 		}
 
 		public AscoredDB(string configuration)
 			: base(configuration)
 		{
 			InitDataContext();
-			InitMappingSchema();
+			//InitMappingSchema();
 		}
+
+        public AscoredDB(string providerName, string configuration)
+            :base(providerName, configuration)
+        {
+            InitDataContext();
+        }
 
 		partial void InitDataContext  ();
 		partial void InitMappingSchema();
@@ -125,8 +133,9 @@ namespace DataModels
 		[PrimaryKey, NotNull    ] public Guid     OrderGuid { get; set; } // uniqueidentifier
 		[Column,     NotNull    ] public string   Customer  { get; set; } // varchar(100)
 		[Column,     NotNull    ] public string   Number    { get; set; } // varchar(50)
-		[Column,        Nullable] public decimal? Cost      { get; set; } // decimal(18, 2)
-		[Column,        Nullable] public int?     Status    { get; set; } // int
+        [Column, NotNull] public decimal Cost      { get; set; } // decimal(18, 2)
+        [Column, NotNull] public int     Status    { get; set; } // int
+        [Column, NotNull] public DateTime ModifiedDate { get; set; }//datetime
 	}
 
 	[Table(Schema="dbo", Name="OrderProduct")]

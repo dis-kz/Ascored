@@ -1,6 +1,6 @@
 ﻿namespace Ascored
 {
-    partial class componentForm
+    partial class ComponentForm
     {
         /// <summary>
         /// Required designer variable.

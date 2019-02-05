@@ -12,30 +12,33 @@ namespace DataMapping
     public class DbService
     {
         AscoredDB db;
-        public DbService(string ConnectionString)
+
+        public DbService() : this("SqlServer", "data source=localhost;initial catalog=Ascored;persist security info=True;user id=sa;password=Pass123;") { }
+
+        public DbService(string providerName, string connectionString)
         {
-            db = new AscoredDB(ConnectionString);
+            db = new AscoredDB(providerName, connectionString);
             db.CommandTimeout = 60000;
             db.Command.CommandText = "SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED";
             db.Command.ExecuteNonQuery();
         }
 
         //новая запись
-        public void Insert<T>(T po)
+        public int Insert<T>(T po)
         {
-            db.Insert(po);
+            return db.Insert(po);
         }
 
         //обновление записи
-        public void Update<T>(T po, Func<T, Expression<Func<T, bool>>> predicate, Func<T, Expression<Func<T, T>>> setter) where T : class
+        public int Update<T>(T po, Func<T, Expression<Func<T, bool>>> predicate, Func<T, Expression<Func<T, T>>> setter) where T : class
         {
             if (setter == null)
             {
-                db.Update(po);
+                return db.Update(po);
             }
             else
             {
-                db.GetTable<T>().Update(predicate(po), setter(po));
+                return db.GetTable<T>().Update(predicate(po), setter(po));
             }
         }
 
@@ -49,7 +52,7 @@ namespace DataMapping
 
         public Order GetOrderById(Guid orderguid)
         {
-            var order = db.Orders.Where(o => o.OrderGuid == orderguid).First();
+            var order = db.Orders.Where(o => o.OrderGuid == orderguid).FirstOrDefault();
             return order;
         }
 

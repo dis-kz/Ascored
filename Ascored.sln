@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ascored", "Ascored\Ascored.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataMapping", "DataMapping\DataMapping.csproj", "{56848374-A97F-49FC-9CE9-04649F14FC4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumsAndCases", "EnumsAndCases\EnumsAndCases.csproj", "{8651453D-30DF-48BE-B002-FEC6A8AF5BF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{56848374-A97F-49FC-9CE9-04649F14FC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56848374-A97F-49FC-9CE9-04649F14FC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56848374-A97F-49FC-9CE9-04649F14FC4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8651453D-30DF-48BE-B002-FEC6A8AF5BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8651453D-30DF-48BE-B002-FEC6A8AF5BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8651453D-30DF-48BE-B002-FEC6A8AF5BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8651453D-30DF-48BE-B002-FEC6A8AF5BF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

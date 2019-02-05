@@ -21,9 +21,9 @@ namespace Ascored
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mainForm());
+            Application.Run(new MainForm());
 
-            //Application.Run(new componentForm());
+            //Application.Run(new OrderForm());
         }
     }
 }

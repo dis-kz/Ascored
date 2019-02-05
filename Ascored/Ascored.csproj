@@ -46,25 +46,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="componentForm.cs">
+    <Compile Include="ComponentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="componentForm.Designer.cs">
-      <DependentUpon>componentForm.cs</DependentUpon>
+    <Compile Include="ComponentForm.Designer.cs">
+      <DependentUpon>ComponentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="mainForm.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mainForm.Designer.cs">
-      <DependentUpon>mainForm.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="componentForm.resx">
-      <DependentUpon>componentForm.cs</DependentUpon>
+    <EmbeddedResource Include="ComponentForm.resx">
+      <DependentUpon>ComponentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="mainForm.resx">
-      <DependentUpon>mainForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -76,6 +85,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Backup\backup_20190204.bak" />
+    <None Include="Properties\DataSources\DataModels.Order.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +103,10 @@
     <ProjectReference Include="..\DataMapping\DataMapping.csproj">
       <Project>{56848374-a97f-49fc-9ce9-04649f14fc4a}</Project>
       <Name>DataMapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EnumsAndCases\EnumsAndCases.csproj">
+      <Project>{8651453d-30df-48be-b002-fec6a8af5bf0}</Project>
+      <Name>EnumsAndCases</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Ascored
 {
-    public partial class componentForm : Form
+    public partial class ComponentForm : Form
     {
         // это конструктор формы - главный метод построения класса
-        public componentForm()
+        public ComponentForm()
         {
             InitializeComponent();
 
