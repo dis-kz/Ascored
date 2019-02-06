@@ -42,10 +42,11 @@ namespace Ascored
         //Загрузка формы
         private void orderForm_Load(object sender, EventArgs e)
         {
-            cmbStatus.DataSource = EnumAndCases.GetOrderStatus();
-            cmbStatus.DisplayMember = "Name";
-            cmbStatus.ValueMember = "Value";
+            //cmbStatus.DataSource = EnumAndCases.GetOrderStatus();
+            //cmbStatus.DisplayMember = "Name";
+            //cmbStatus.ValueMember = "Value";
 
+            EnumAndCases.GetOrderStatus(cmbStatus);
             if (LastOrder != null) cmbStatus.SelectedItem = cmbStatus.Items[LastOrder.Status];
         }
 

@@ -83,6 +83,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Backup\backup_20190204.bak" />
     <None Include="Properties\DataSources\DataModels.Order.datasource" />
@@ -108,6 +109,15 @@
       <Project>{8651453d-30df-48be-b002-fec6a8af5bf0}</Project>
       <Name>EnumsAndCases</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sortAsc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sortAsc16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sortDesc16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

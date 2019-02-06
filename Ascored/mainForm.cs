@@ -16,6 +16,7 @@ namespace Ascored
     public partial class MainForm : Form
     {
         DbService db = new DbService();
+        char[] arrows = new char[]{ '▲', '▼' };
 
         public MainForm()
         {
@@ -29,11 +30,12 @@ namespace Ascored
 
         private void ResetBindingSource()
         {
-            orderBindingSource.DataSource = db.GetOrders().OrderByDescending(o => o.ModifiedDate);
+            orderBindingSource.DataSource = db.GetOrders().OrderBy(o => o.ModifiedDate);
 
-            statusDataGridViewTextBoxColumn.DataSource = EnumAndCases.GetOrderStatus();
-            statusDataGridViewTextBoxColumn.DisplayMember = "Name";
-            statusDataGridViewTextBoxColumn.ValueMember = "Value";
+            //statusDataGridViewTextBoxColumn.DataSource = EnumAndCases.GetOrderStatus();
+            //statusDataGridViewTextBoxColumn.DisplayMember = "Name";
+            //statusDataGridViewTextBoxColumn.ValueMember = "Value";
+            EnumAndCases.GetOrderStatus(StatusDgvColumn);
         }
 
         //Создать новый заказ
