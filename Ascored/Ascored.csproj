@@ -110,14 +110,5 @@
       <Name>EnumsAndCases</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sortAsc.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sortAsc16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sortDesc16.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
