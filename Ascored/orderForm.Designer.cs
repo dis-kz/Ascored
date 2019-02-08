@@ -254,6 +254,8 @@
             this.Controls.Add(this.btnSave);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "OrderForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Создать/изменить заказ";
             this.Load += new System.EventHandler(this.orderForm_Load);

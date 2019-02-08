@@ -1,32 +1,37 @@
-﻿using System;
+﻿using DataMapping;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using DataModels;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Component = DataModels.Component;
 
 namespace Ascored
 {
     public partial class ComponentForm : Form
     {
-        // это конструктор формы - главный метод построения класса
+        DbService db = new DbService();
+
         public ComponentForm()
         {
             InitializeComponent();
-
-            //здесь будет весь функциональный код новой формы
-            //а вот метод InitializeComponent() описан в файле автоматически сгенерированном при создании формы
-
-            //если на вызове метода ткнуть F12 провалишься к его определению
         }
 
-        //это событие загрузки (прорисовки формы)
-        private void componentForm_Load(object sender, EventArgs e)
+        private void ComponentForm_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Привет, Серёга!");
+            groupBindingSource.DataSource = db.GetComponentGroups();
+            componentBindingSource.DataSource = db.GetComponents();
+        }
+
+        private void btnAddComponent_Click(object sender, EventArgs e)
+        {
+            Component component = componentBindingSource.AddNew() as Component;
+            component.ComponentGroupGuid = (groupBindingSource.Current as ComponentGroup).ComponentGroupGuid;
         }
     }
 }

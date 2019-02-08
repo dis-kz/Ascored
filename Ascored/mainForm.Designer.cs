@@ -251,6 +251,7 @@
             // orderBindingSource
             // 
             this.orderBindingSource.DataSource = typeof(DataModels.Order);
+            this.orderBindingSource.Sort = "";
             // 
             // MainForm
             // 
@@ -265,7 +266,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Welcome to Ascored";
+            this.Text = "Заказы";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -50,11 +50,33 @@ namespace DataMapping
             return list;
         }
 
-        public Order GetOrderById(Guid orderguid)
+        public Order GetOrder(Guid orderguid)
         {
             var order = db.Orders.Where(o => o.OrderGuid == orderguid).FirstOrDefault();
             return order;
         }
+
+        #endregion
+
+        #region Components and Groups
+
+        public IEnumerable<Component> GetComponents()
+        {
+            var list = db.Components.ToList();
+            return list;
+        }
+
+        public IEnumerable<Component> GetComponents(Guid groupGuid)
+        {
+            var list = db.Components.Where(c => c.ComponentGroupGuid == groupGuid).ToList();
+            return list;
+        }
+
+        public IEnumerable<ComponentGroup> GetComponentGroups()
+        {
+            var list = db.ComponentGroups.ToList();
+            return list;
+        } 
 
         #endregion
     }

@@ -83,7 +83,7 @@ namespace Ascored
             LastOrder.ModifiedDate = DateTime.Now;
 
             DbService db = new DbService();
-            if (db.GetOrderById(LastOrder.OrderGuid) != null)
+            if (db.GetOrder(LastOrder.OrderGuid) != null)
             {
                 Func<Order, Expression<Func<Order, bool>>> predicate = (ord) => (i) => ord.OrderGuid == LastOrder.OrderGuid;
                 result = db.Update(LastOrder, predicate, null);
