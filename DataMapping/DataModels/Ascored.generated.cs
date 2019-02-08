@@ -14,8 +14,6 @@ using System.Linq.Expressions;
 using System.Reflection;
 
 using LinqToDB;
-using LinqToDB.Common;
-using LinqToDB.Data;
 using LinqToDB.DataProvider.SqlServer;
 using LinqToDB.Extensions;
 using LinqToDB.Mapping;
@@ -34,7 +32,6 @@ namespace DataModels
 		public ITable<ComponentGroup>   ComponentGroups   { get { return this.GetTable<ComponentGroup>(); } }
 		public ITable<Order>            Orders            { get { return this.GetTable<Order>(); } }
 		public ITable<OrderProduct>     OrderProducts     { get { return this.GetTable<OrderProduct>(); } }
-		public ITable<ParamSet>         ParamSets         { get { return this.GetTable<ParamSet>(); } }
 		public ITable<Product>          Products          { get { return this.GetTable<Product>(); } }
 		public ITable<ProductAssembly>  ProductAssemblies { get { return this.GetTable<ProductAssembly>(); } }
 		public ITable<ProductComponent> ProductComponents { get { return this.GetTable<ProductComponent>(); } }
@@ -42,20 +39,14 @@ namespace DataModels
 		public AscoredDB()
 		{
 			InitDataContext();
-			//InitMappingSchema();
-		}
+            InitMappingSchema();
+        }
 
-		public AscoredDB(string configuration)
+		public AscoredDB(string provider, string configuration)
 			: base(configuration)
 		{
 			InitDataContext();
-			//InitMappingSchema();
-		}
-
-        public AscoredDB(string providerName, string configuration)
-            :base(providerName, configuration)
-        {
-            InitDataContext();
+            InitMappingSchema();
         }
 
 		partial void InitDataContext  ();
@@ -130,12 +121,12 @@ namespace DataModels
 	[Table(Schema="dbo", Name="Order")]
 	public partial class Order
 	{
-		[PrimaryKey, NotNull    ] public Guid     OrderGuid { get; set; } // uniqueidentifier
-		[Column,     NotNull    ] public string   Customer  { get; set; } // varchar(100)
-		[Column,     NotNull    ] public string   Number    { get; set; } // varchar(50)
-        [Column, NotNull] public decimal Cost      { get; set; } // decimal(18, 2)
-        [Column, NotNull] public int     Status    { get; set; } // int
-        [Column, NotNull] public DateTime ModifiedDate { get; set; }//datetime
+		[PrimaryKey, NotNull] public Guid     OrderGuid    { get; set; } // uniqueidentifier
+		[Column,     NotNull] public string   Customer     { get; set; } // varchar(100)
+		[Column,     NotNull] public string   Number       { get; set; } // varchar(50)
+		[Column,     NotNull] public decimal  Cost         { get; set; } // decimal(18, 2)
+		[Column,     NotNull] public int      Status       { get; set; } // int
+		[Column,     NotNull] public DateTime ModifiedDate { get; set; } // datetime
 	}
 
 	[Table(Schema="dbo", Name="OrderProduct")]
@@ -147,10 +138,12 @@ namespace DataModels
 		[Column,     NotNull] public int  ProductCount     { get; set; } // int
 	}
 
-	[Table(Schema="dbo", Name="ParamSet")]
-	public partial class ParamSet
+	[Table(Schema="dbo", Name="Product")]
+	public partial class Product
 	{
-		[PrimaryKey, NotNull    ] public Guid   ParamSetGuid       { get; set; } // uniqueidentifier
+		[PrimaryKey, NotNull    ] public Guid   ProductGuid        { get; set; } // uniqueidentifier
+		[Column,     NotNull    ] public string Name               { get; set; } // varchar(50)
+		[Column,     NotNull    ] public int    Quantity           { get; set; } // int
 		[Column,        Nullable] public string ClimatModification { get; set; } // varchar(50)
 		[Column,        Nullable] public string IP                 { get; set; } // varchar(4)
 		[Column,        Nullable] public string Size               { get; set; } // varchar(50)
@@ -158,15 +151,6 @@ namespace DataModels
 		[Column,        Nullable] public string LocalCategory      { get; set; } // varchar(50)
 		[Column,        Nullable] public string FireCategory       { get; set; } // varchar(50)
 		[Column,        Nullable] public string FireWithstanding   { get; set; } // varchar(50)
-	}
-
-	[Table(Schema="dbo", Name="Product")]
-	public partial class Product
-	{
-		[PrimaryKey, NotNull] public Guid   ProductGuid  { get; set; } // uniqueidentifier
-		[Column,     NotNull] public string Name         { get; set; } // varchar(50)
-		[Column,     NotNull] public int    Quantity     { get; set; } // int
-		[Column,     NotNull] public Guid   ParamSetGuid { get; set; } // uniqueidentifier
 	}
 
 	[Table(Schema="dbo", Name="ProductAssembly")]
@@ -216,12 +200,6 @@ namespace DataModels
 		{
 			return table.FirstOrDefault(t =>
 				t.OrderProductGuid == OrderProductGuid);
-		}
-
-		public static ParamSet Find(this ITable<ParamSet> table, Guid ParamSetGuid)
-		{
-			return table.FirstOrDefault(t =>
-				t.ParamSetGuid == ParamSetGuid);
 		}
 
 		public static Product Find(this ITable<Product> table, Guid ProductGuid)
