@@ -11,6 +11,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Media;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,9 +20,9 @@ namespace Ascored
     public partial class OrderForm : Form
     {
         public Order LastOrder { get; set; }
+        string separator = CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
 
         public OrderForm() :this(null) { }
-
         public OrderForm(Order order)
         {
             InitializeComponent();
@@ -32,10 +33,13 @@ namespace Ascored
                 txtNumber.Text = LastOrder.Number;
                 txtCustomer.Text = LastOrder.Customer;
                 txtCost.Text = LastOrder.Cost.ToString();
+                txtFactor.Text = LastOrder.Factor.ToString();
+                txtTaxRate.Text = LastOrder.TaxRate.ToString();
+                txtPrice.Text = LastOrder.Price.ToString();
             }
             else
             {
-                txtCost.Text = $"0{CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator}00";
+                txtCost.Text = txtPrice.Text = $"0{separator}00";
             }
         }
 
@@ -71,8 +75,11 @@ namespace Ascored
             }
             LastOrder.Customer = txtCustomer.Text;
             LastOrder.Number = txtNumber.Text;
+            LastOrder.Cost = decimal.Parse(Convert(txtPrice.Text));
+            LastOrder.Factor = decimal.Parse(Convert(txtFactor.Text));
+            LastOrder.TaxRate = int.Parse(txtTaxRate.Text);
+            LastOrder.Price = decimal.Parse(Convert(txtPrice.Text));
             LastOrder.Status = (int)cmbStatus.SelectedValue;
-            LastOrder.Cost = decimal.Parse(txtCost.Text);
             LastOrder.ModifiedDate = DateTime.Now;
 
             DbService db = new DbService();
@@ -105,6 +112,38 @@ namespace Ascored
         {
             TextBox txt = sender as TextBox;
             if (txt.Text.Length > 0) txt.BackColor = Color.White;
+        }
+
+        //добавление коэффициента или ставки НДС
+        private void txtFactAndTax_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                double cost = double.Parse(Convert(txtCost.Text));
+                double factor = double.Parse(Convert(txtFactor.Text));
+                double tax = double.Parse(Convert(txtTaxRate.Text));
+
+                //расчёт Итого
+                double price = (cost * factor) + ((tax / 100) * cost);
+                txtPrice.Text = price.ToString();
+            }
+        }
+
+        private string Convert(string input)
+        {
+            return Regex.Replace(input, @"[^\d]", separator);
+        }
+
+        //маска ввода на НДС
+        private void txtTaxRate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar)
+                && e.KeyChar != 8  /*Backspace*/
+                && e.KeyChar != 13 /*Enter*/
+                )
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -39,15 +39,15 @@ namespace DataModels
 		public AscoredDB()
 		{
 			InitDataContext();
-            InitMappingSchema();
-        }
+			InitMappingSchema();
+		}
 
 		public AscoredDB(string provider, string configuration)
-			: base(configuration)
+			: base(provider, configuration)
 		{
 			InitDataContext();
-            InitMappingSchema();
-        }
+			InitMappingSchema();
+		}
 
 		partial void InitDataContext  ();
 		partial void InitMappingSchema();
@@ -125,6 +125,9 @@ namespace DataModels
 		[Column,     NotNull] public string   Customer     { get; set; } // varchar(100)
 		[Column,     NotNull] public string   Number       { get; set; } // varchar(50)
 		[Column,     NotNull] public decimal  Cost         { get; set; } // decimal(18, 2)
+		[Column,     NotNull] public decimal  Factor       { get; set; } // decimal(6, 2)
+		[Column,     NotNull] public int      TaxRate      { get; set; } // int
+		[Column,     NotNull] public decimal  Price        { get; set; } // decimal(18, 2)
 		[Column,     NotNull] public int      Status       { get; set; } // int
 		[Column,     NotNull] public DateTime ModifiedDate { get; set; } // datetime
 	}

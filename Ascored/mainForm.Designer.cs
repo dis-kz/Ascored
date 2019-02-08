@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbSort = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,14 +39,14 @@
             this.btnOpenOrderCard = new System.Windows.Forms.Button();
             this.btnCreateOrder = new System.Windows.Forms.Button();
             this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ModifiedDateDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CostDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusDgvColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ModifiedDateDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
@@ -65,10 +65,10 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.groupBox1.Size = new System.Drawing.Size(675, 306);
+            this.groupBox1.Size = new System.Drawing.Size(675, 423);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Создание/редактирование заказов";
+            this.groupBox1.Text = "Управление заказами";
             // 
             // cmbSort
             // 
@@ -97,8 +97,10 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(267, 267);
+            this.label1.Location = new System.Drawing.Point(271, 383);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 16);
             this.label1.TabIndex = 3;
@@ -106,29 +108,52 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(321, 264);
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Location = new System.Drawing.Point(325, 381);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(338, 23);
+            this.txtSearch.Size = new System.Drawing.Size(334, 23);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // btnOpenOrderCard
             // 
-            this.btnOpenOrderCard.Location = new System.Drawing.Point(142, 262);
+            this.btnOpenOrderCard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenOrderCard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOpenOrderCard.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnOpenOrderCard.FlatAppearance.BorderSize = 0;
+            this.btnOpenOrderCard.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnOpenOrderCard.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnOpenOrderCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenOrderCard.Image = global::Ascored.Properties.Resources.projectcard16;
+            this.btnOpenOrderCard.Location = new System.Drawing.Point(146, 378);
             this.btnOpenOrderCard.Name = "btnOpenOrderCard";
             this.btnOpenOrderCard.Size = new System.Drawing.Size(119, 26);
             this.btnOpenOrderCard.TabIndex = 1;
             this.btnOpenOrderCard.Text = "Открыть ТКЗ";
+            this.btnOpenOrderCard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOpenOrderCard.UseVisualStyleBackColor = true;
             // 
             // btnCreateOrder
             // 
-            this.btnCreateOrder.Location = new System.Drawing.Point(17, 262);
+            this.btnCreateOrder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreateOrder.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreateOrder.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCreateOrder.FlatAppearance.BorderSize = 0;
+            this.btnCreateOrder.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnCreateOrder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnCreateOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateOrder.Image = global::Ascored.Properties.Resources.create16;
+            this.btnCreateOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreateOrder.Location = new System.Drawing.Point(17, 379);
             this.btnCreateOrder.Name = "btnCreateOrder";
-            this.btnCreateOrder.Size = new System.Drawing.Size(119, 26);
+            this.btnCreateOrder.Size = new System.Drawing.Size(123, 26);
             this.btnCreateOrder.TabIndex = 1;
             this.btnCreateOrder.Text = "Создать новый";
+            this.btnCreateOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCreateOrder.UseVisualStyleBackColor = true;
             this.btnCreateOrder.Click += new System.EventHandler(this.btnCreateOrder_Click);
             // 
@@ -137,15 +162,15 @@
             this.dataGridViewOrders.AllowUserToAddRows = false;
             this.dataGridViewOrders.AllowUserToDeleteRows = false;
             this.dataGridViewOrders.AutoGenerateColumns = false;
-            this.dataGridViewOrders.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Linen;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewOrders.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Ivory;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOrders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewOrders.ColumnHeadersHeight = 27;
             this.dataGridViewOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.orderGuidDataGridViewTextBoxColumn,
@@ -160,14 +185,26 @@
             this.dataGridViewOrders.Name = "dataGridViewOrders";
             this.dataGridViewOrders.ReadOnly = true;
             this.dataGridViewOrders.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dataGridViewOrders.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataGridViewOrders.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewOrders.ShowCellToolTips = false;
-            this.dataGridViewOrders.Size = new System.Drawing.Size(642, 193);
+            this.dataGridViewOrders.Size = new System.Drawing.Size(642, 306);
             this.dataGridViewOrders.TabIndex = 0;
             this.dataGridViewOrders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOrders_CellDoubleClick);
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 300;
+            // 
+            // ModifiedDateDgvColumn
+            // 
+            this.ModifiedDateDgvColumn.DataPropertyName = "ModifiedDate";
+            this.ModifiedDateDgvColumn.HeaderText = "Дата изменения";
+            this.ModifiedDateDgvColumn.Name = "ModifiedDateDgvColumn";
+            this.ModifiedDateDgvColumn.ReadOnly = true;
+            this.ModifiedDateDgvColumn.Width = 120;
             // 
             // orderGuidDataGridViewTextBoxColumn
             // 
@@ -196,8 +233,8 @@
             // 
             // CostDgvColumn
             // 
-            this.CostDgvColumn.DataPropertyName = "Cost";
-            this.CostDgvColumn.HeaderText = "Стоимость";
+            this.CostDgvColumn.DataPropertyName = "Price";
+            this.CostDgvColumn.HeaderText = "Итоговая цена";
             this.CostDgvColumn.Name = "CostDgvColumn";
             this.CostDgvColumn.ReadOnly = true;
             // 
@@ -211,31 +248,23 @@
             this.StatusDgvColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.StatusDgvColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // ModifiedDateDgvColumn
-            // 
-            this.ModifiedDateDgvColumn.DataPropertyName = "ModifiedDate";
-            this.ModifiedDateDgvColumn.HeaderText = "Дата изменения";
-            this.ModifiedDateDgvColumn.Name = "ModifiedDateDgvColumn";
-            this.ModifiedDateDgvColumn.ReadOnly = true;
-            this.ModifiedDateDgvColumn.Width = 120;
-            // 
             // orderBindingSource
             // 
             this.orderBindingSource.DataSource = typeof(DataModels.Order);
-            // 
-            // toolTip
-            // 
-            this.toolTip.AutomaticDelay = 300;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 389);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(701, 452);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome to Ascored";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.groupBox1.ResumeLayout(false);
@@ -254,15 +283,15 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbSort;
+        private System.Windows.Forms.Button btnOpenOrderCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderGuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerDgvColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumberDgvColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostDgvColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn StatusDgvColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModifiedDateDgvColumn;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbSort;
-        private System.Windows.Forms.Button btnOpenOrderCard;
     }
 }
 
