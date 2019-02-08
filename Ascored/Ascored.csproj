@@ -80,7 +80,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Backup\backup_20190204.bak" />
+    <None Include="Backup\backup_20190208.bak" />
     <None Include="Properties\DataSources\DataModels.Order.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
