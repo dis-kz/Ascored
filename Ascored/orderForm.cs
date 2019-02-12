@@ -39,14 +39,14 @@ namespace Ascored
             }
             else
             {
-                txtCost.Text = txtPrice.Text = $"0{separator}00";
+                txtCost.Text = txtPrice.Text = SharedMethods.Convert("0.00");
             }
         }
 
         //Загрузка формы
         private void orderForm_Load(object sender, EventArgs e)
         {
-            EnumAndCases.GetOrderStatus(cmbStatus);
+            SharedMethods.GetOrderStatus(cmbStatus);
             if (LastOrder != null) cmbStatus.SelectedItem = cmbStatus.Items[LastOrder.Status];
         }
 
@@ -75,23 +75,15 @@ namespace Ascored
             }
             LastOrder.Customer = txtCustomer.Text;
             LastOrder.Number = txtNumber.Text;
-            LastOrder.Cost = decimal.Parse(Convert(txtPrice.Text));
-            LastOrder.Factor = decimal.Parse(Convert(txtFactor.Text));
+            LastOrder.Cost = decimal.Parse(SharedMethods.Convert(txtPrice.Text));
+            LastOrder.Factor = decimal.Parse(SharedMethods.Convert(txtFactor.Text));
             LastOrder.TaxRate = int.Parse(txtTaxRate.Text);
-            LastOrder.Price = decimal.Parse(Convert(txtPrice.Text));
+            LastOrder.Price = decimal.Parse(SharedMethods.Convert(txtPrice.Text));
             LastOrder.Status = (int)cmbStatus.SelectedValue;
             LastOrder.ModifiedDate = DateTime.Now;
 
             DbService db = new DbService();
-            if (db.GetOrder(LastOrder.OrderGuid) != null)
-            {
-                Func<Order, Expression<Func<Order, bool>>> predicate = (ord) => (i) => ord.OrderGuid == LastOrder.OrderGuid;
-                result = db.Update(LastOrder, predicate, null);
-            }
-            else
-            {
-               result = db.Insert(LastOrder);
-            }
+            db.Save(LastOrder, (ord) => (i) => i.OrderGuid == ord.OrderGuid);
 
             if(result > 0)
                 MessageBox.Show($"Успешно сохранено в базе данных", "Сохранение в БД", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -119,19 +111,14 @@ namespace Ascored
         {
             if(e.KeyCode == Keys.Enter)
             {
-                double cost = double.Parse(Convert(txtCost.Text));
-                double factor = double.Parse(Convert(txtFactor.Text));
-                double tax = double.Parse(Convert(txtTaxRate.Text));
+                double cost = double.Parse(SharedMethods.Convert(txtCost.Text));
+                double factor = double.Parse(SharedMethods.Convert(txtFactor.Text));
+                double tax = double.Parse(SharedMethods.Convert(txtTaxRate.Text));
 
                 //расчёт Итого
                 double price = (cost * factor) + ((tax / 100) * cost);
                 txtPrice.Text = price.ToString();
             }
-        }
-
-        private string Convert(string input)
-        {
-            return Regex.Replace(input, @"[^\d]", separator);
         }
 
         //маска ввода на НДС

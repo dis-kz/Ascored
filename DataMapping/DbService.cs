@@ -23,14 +23,27 @@ namespace DataMapping
             db.Command.ExecuteNonQuery();
         }
 
+        //сохранение в базе
+        public int Save<T>(T po, Func<T, Expression<Func<T, bool>>> predicate) where T : class
+        {
+            int result = 0;
+            var exist = db.GetTable<T>().Where(predicate(po)).FirstOrDefault();
+
+            if (exist != null)
+                result = Update(po, predicate);
+            else result = Insert(po);
+
+            return result;
+        }
+
         //новая запись
-        public int Insert<T>(T po)
+        private int Insert<T>(T po)
         {
             return db.Insert(po);
         }
 
         //обновление записи
-        public int Update<T>(T po, Func<T, Expression<Func<T, bool>>> predicate, Func<T, Expression<Func<T, T>>> setter) where T : class
+        private int Update<T>(T po, Func<T, Expression<Func<T, bool>>> predicate, Func<T, Expression<Func<T, T>>> setter = null) where T : class
         {
             if (setter == null)
             {
@@ -59,6 +72,11 @@ namespace DataMapping
         #endregion
 
         #region Components and Groups
+
+        public Component GetComponent(Guid componentGuid)
+        {
+            return db.Components.Where(c => c.ComponentGuid == componentGuid).FirstOrDefault();
+        }
 
         public IEnumerable<Component> GetComponents()
         {

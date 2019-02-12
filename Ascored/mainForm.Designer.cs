@@ -39,14 +39,14 @@
             this.btnOpenOrderCard = new System.Windows.Forms.Button();
             this.btnCreateOrder = new System.Windows.Forms.Button();
             this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ModifiedDateDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumberDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CostDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusDgvColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ModifiedDateDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
@@ -165,7 +165,7 @@
             this.dataGridViewOrders.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Ivory;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -193,18 +193,6 @@
             this.dataGridViewOrders.Size = new System.Drawing.Size(642, 306);
             this.dataGridViewOrders.TabIndex = 0;
             this.dataGridViewOrders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOrders_CellDoubleClick);
-            // 
-            // toolTip
-            // 
-            this.toolTip.AutomaticDelay = 300;
-            // 
-            // ModifiedDateDgvColumn
-            // 
-            this.ModifiedDateDgvColumn.DataPropertyName = "ModifiedDate";
-            this.ModifiedDateDgvColumn.HeaderText = "Дата изменения";
-            this.ModifiedDateDgvColumn.Name = "ModifiedDateDgvColumn";
-            this.ModifiedDateDgvColumn.ReadOnly = true;
-            this.ModifiedDateDgvColumn.Width = 120;
             // 
             // orderGuidDataGridViewTextBoxColumn
             // 
@@ -248,10 +236,22 @@
             this.StatusDgvColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.StatusDgvColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // ModifiedDateDgvColumn
+            // 
+            this.ModifiedDateDgvColumn.DataPropertyName = "ModifiedDate";
+            this.ModifiedDateDgvColumn.HeaderText = "Дата изменения";
+            this.ModifiedDateDgvColumn.Name = "ModifiedDateDgvColumn";
+            this.ModifiedDateDgvColumn.ReadOnly = true;
+            this.ModifiedDateDgvColumn.Width = 120;
+            // 
             // orderBindingSource
             // 
             this.orderBindingSource.DataSource = typeof(DataModels.Order);
             this.orderBindingSource.Sort = "";
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 300;
             // 
             // MainForm
             // 
@@ -265,6 +265,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Заказы";
             this.Load += new System.EventHandler(this.mainForm_Load);

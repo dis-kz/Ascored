@@ -83,6 +83,16 @@ namespace Ascored.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap creategroup16 {
+            get {
+                object obj = ResourceManager.GetObject("creategroup16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap projectcard16 {
             get {
                 object obj = ResourceManager.GetObject("projectcard16", resourceCulture);

@@ -32,17 +32,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridViewComponents = new System.Windows.Forms.DataGridView();
-            this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.componentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnAddComponent = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.dataGridViewComponents = new System.Windows.Forms.DataGridView();
+            this.btnCreateGroup = new System.Windows.Forms.Button();
+            this.btnAddComponent = new System.Windows.Forms.Button();
             this.componentGuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupDgvColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ReferDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceDgvColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.componentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComponents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).BeginInit();
@@ -53,6 +54,7 @@
             // 
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtSearch);
+            this.groupBox1.Controls.Add(this.btnCreateGroup);
             this.groupBox1.Controls.Add(this.btnAddComponent);
             this.groupBox1.Controls.Add(this.dataGridViewComponents);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
@@ -61,6 +63,28 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Комплектующие";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(285, 435);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 14);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Найти:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Location = new System.Drawing.Point(336, 432);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(379, 22);
+            this.txtSearch.TabIndex = 4;
+            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // dataGridViewComponents
             // 
@@ -94,14 +118,28 @@
             this.dataGridViewComponents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewComponents.Size = new System.Drawing.Size(700, 399);
             this.dataGridViewComponents.TabIndex = 0;
+            this.dataGridViewComponents.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewComponents_CellEndEdit);
             // 
-            // groupBindingSource
+            // btnCreateGroup
             // 
-            this.groupBindingSource.DataSource = typeof(DataModels.ComponentGroup);
-            // 
-            // componentBindingSource
-            // 
-            this.componentBindingSource.DataSource = typeof(DataModels.Component);
+            this.btnCreateGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreateGroup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreateGroup.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCreateGroup.FlatAppearance.BorderSize = 0;
+            this.btnCreateGroup.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.btnCreateGroup.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnCreateGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateGroup.Image = global::Ascored.Properties.Resources.creategroup16;
+            this.btnCreateGroup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreateGroup.Location = new System.Drawing.Point(150, 429);
+            this.btnCreateGroup.Name = "btnCreateGroup";
+            this.btnCreateGroup.Size = new System.Drawing.Size(129, 26);
+            this.btnCreateGroup.TabIndex = 2;
+            this.btnCreateGroup.Text = "Создать группу";
+            this.btnCreateGroup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCreateGroup.UseVisualStyleBackColor = true;
+            this.btnCreateGroup.Click += new System.EventHandler(this.btnCreateGroup_Click);
             // 
             // btnAddComponent
             // 
@@ -115,7 +153,7 @@
             this.btnAddComponent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddComponent.Image = global::Ascored.Properties.Resources.create16;
             this.btnAddComponent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddComponent.Location = new System.Drawing.Point(15, 428);
+            this.btnAddComponent.Location = new System.Drawing.Point(15, 429);
             this.btnAddComponent.Name = "btnAddComponent";
             this.btnAddComponent.Size = new System.Drawing.Size(129, 26);
             this.btnAddComponent.TabIndex = 2;
@@ -123,27 +161,6 @@
             this.btnAddComponent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddComponent.UseVisualStyleBackColor = true;
             this.btnAddComponent.Click += new System.EventHandler(this.btnAddComponent_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(273, 435);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 14);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Найти:";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(324, 432);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(391, 22);
-            this.txtSearch.TabIndex = 4;
-            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // componentGuidDataGridViewTextBoxColumn
             // 
@@ -173,6 +190,10 @@
             this.GroupDgvColumn.ValueMember = "ComponentGroupGuid";
             this.GroupDgvColumn.Width = 160;
             // 
+            // groupBindingSource
+            // 
+            this.groupBindingSource.DataSource = typeof(DataModels.ComponentGroup);
+            // 
             // ReferDgvColumn
             // 
             this.ReferDgvColumn.DataPropertyName = "Reference";
@@ -186,6 +207,10 @@
             this.PriceDgvColumn.HeaderText = "Цена";
             this.PriceDgvColumn.Name = "PriceDgvColumn";
             // 
+            // componentBindingSource
+            // 
+            this.componentBindingSource.DataSource = typeof(DataModels.Component);
+            // 
             // ComponentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -195,6 +220,8 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "ComponentForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "База данных комплектующих и материалов";
             this.Load += new System.EventHandler(this.ComponentForm_Load);
             this.groupBox1.ResumeLayout(false);
@@ -220,5 +247,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn GroupDgvColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReferDgvColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceDgvColumn;
+        private System.Windows.Forms.Button btnCreateGroup;
     }
 }

@@ -47,7 +47,7 @@ namespace Ascored
         private void ResetBindingSource()
         {
             orderBindingSource.DataSource = db.GetOrders().OrderBy(o => o.ModifiedDate);
-            EnumAndCases.GetOrderStatus(StatusDgvColumn);
+            SharedMethods.GetOrderStatus(StatusDgvColumn);
         }
 
         private void ResetBindingSource(string column, int arrow)
@@ -91,9 +91,12 @@ namespace Ascored
             {
                 if (!string.IsNullOrEmpty(txtSearch.Text))
                 {
-                    var filter = (IEnumerable<Order>)orderBindingSource.DataSource;
-                    filter = filter.Where(o => o.Customer.Contains(txtSearch.Text) || o.Number.Contains(txtSearch.Text));
-                    orderBindingSource.DataSource = filter;
+                    var source = (IEnumerable<Order>)orderBindingSource.DataSource;
+                    SharedMethods.Search(orderBindingSource, source, (list) => (o) => 
+                                                     {
+                                                         return o.Customer.ToUpper().Contains(txtSearch.Text.ToUpper()) || 
+                                                              o.Number.ToUpper().Contains(txtSearch.Text.ToUpper());
+                                                     });
                 }
                 else ResetBindingSource();
             }
