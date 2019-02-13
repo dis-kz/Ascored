@@ -27,6 +27,9 @@ namespace Ascored
         {
             groupBindingSource.DataSource = db.GetComponentGroups();
             componentBindingSource.DataSource = db.GetComponents();
+
+            if (groupBindingSource.Count == 0)
+                btnAddComponent.Enabled = false;
         }
 
         //добавить компонент
@@ -37,26 +40,26 @@ namespace Ascored
             component.ComponentGroupGuid = (groupBindingSource.Current as ComponentGroup).ComponentGroupGuid;
         }
 
+        //создать группу
+        private void btnCreateGroup_Click(object sender, EventArgs e)
+        {
+            using (ComponentGroupForm form = new ComponentGroupForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    groupBindingSource.Add(form.NewGroup);
+                    db.Save(form.NewGroup, (cmpg) => (cg) => cg.ComponentGroupGuid == cmpg.ComponentGroupGuid);
+                    if (!btnAddComponent.Enabled) btnAddComponent.Enabled = true;
+                }
+            }
+        }
+
         //завершение редактирования ячейки
         private void dataGridViewComponents_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             componentBindingSource.EndEdit();
             var component = componentBindingSource.Current as Component;
             db.Save(component, (cmp) => (c) => c.ComponentGuid == cmp.ComponentGuid);
-        }
-
-        //создать группу
-        private void btnCreateGroup_Click(object sender, EventArgs e)
-        {
-            using (ComponentGroupForm form = new ComponentGroupForm())
-            {
-                if(form.ShowDialog() == DialogResult.OK)
-                {
-                    groupBindingSource.Add(form.NewGroup);
-                    db.Save(form.NewGroup, (cmpg) => (cg) => cg.ComponentGroupGuid == cmpg.ComponentGroupGuid);
-                }
-            }
-
         }
 
         //поиск по имени или референсу
