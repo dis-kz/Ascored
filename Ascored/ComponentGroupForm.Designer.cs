@@ -106,7 +106,7 @@
             this.Name = "ComponentGroupForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Новая группа компонентов";
+            this.Text = "Создать группу компонентов";
             this.ResumeLayout(false);
             this.PerformLayout();
 
