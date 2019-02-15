@@ -23,7 +23,7 @@ namespace Ascored
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new MainForm());
 
-            Application.Run(new ComponentForm());
+            Application.Run(new ManageOrderForm());
         }
     }
 }

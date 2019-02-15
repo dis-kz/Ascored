@@ -102,6 +102,7 @@ namespace Ascored
             }
         }
 
+        //Сортировка
         private void cmbSort_SelectionChangeCommitted(object sender, EventArgs e)
         {
             string key = (string)cmbSort.SelectedValue;
