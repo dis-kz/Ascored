@@ -1,26 +1,25 @@
 ﻿using DataMapping;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using DataModels;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using EnumsAndCases;
 using Component = DataModels.Component;
-using System.Reflection;
 
 namespace Ascored
 {
     public partial class ComponentForm : Form
     {
-        DbService db = new DbService();
+        DbService db = DbService.Instance;
 
-        public ComponentForm()
+        public Component SelectedComponent { get; private set; }
+        private Mode Mode { get; set; }
+
+        public ComponentForm() : this(Mode.Справочник) { }
+        public ComponentForm(Mode mode)
         {
             InitializeComponent();
+            Mode = mode;
         }
 
         private void ComponentForm_Load(object sender, EventArgs e)
@@ -77,6 +76,17 @@ namespace Ascored
                                                       });
                 }
                 else componentBindingSource.DataSource = db.GetComponents();
+            }
+        }
+
+        //выбор компонента для привязки к продукту
+        private void dataGridViewComponents_DoubleClick(object sender, EventArgs e)
+        {
+            if (Mode == Mode.Привязка)
+            {
+                SelectedComponent = componentBindingSource.Current as Component;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
     }

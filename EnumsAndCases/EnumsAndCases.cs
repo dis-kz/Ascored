@@ -15,4 +15,10 @@ namespace EnumsAndCases
         Рабочий,
         Отказ
     }
+
+    public enum Mode
+    {
+        Справочник,
+        Привязка
+    }
 }

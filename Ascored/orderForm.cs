@@ -82,7 +82,7 @@ namespace Ascored
             LastOrder.Status = (int)cmbStatus.SelectedValue;
             LastOrder.ModifiedDate = DateTime.Now;
 
-            DbService db = new DbService();
+            DbService db = DbService.Instance;
             db.Save(LastOrder, (ord) => (i) => i.OrderGuid == ord.OrderGuid);
 
             if(result > 0)
@@ -130,6 +130,15 @@ namespace Ascored
                 )
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btnEditContent_Click(object sender, EventArgs e)
+        {
+            using(ProductForm form = new ProductForm(Mode.Привязка))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                    MessageBox.Show("Продукт успешно добавлен в заказ!");
             }
         }
     }

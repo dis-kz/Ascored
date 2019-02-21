@@ -13,6 +13,18 @@ namespace DataMapping
     {
         AscoredDB db;
 
+        private static DbService _instance;
+
+        public static DbService Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new DbService();
+                return _instance;
+            }
+        }
+
         public DbService() : this("SqlServer", "data source=localhost;initial catalog=Ascored;persist security info=True;user id=sa;password=Pass123;") { }
 
         public DbService(string providerName, string connectionString)
@@ -24,13 +36,13 @@ namespace DataMapping
         }
 
         //сохранение в базе
-        public int Save<T>(T po, Func<T, Expression<Func<T, bool>>> predicate) where T : class
+        public int Save<T>(T po, Func<T, Expression<Func<T, bool>>> predicate, Func<T, Expression<Func<T, T>>> setter = null) where T : class
         {
             int result = 0;
             var exist = db.GetTable<T>().Where(predicate(po)).FirstOrDefault();
 
             if (exist != null)
-                result = Update(po, predicate);
+                result = Update(po, predicate, setter);
             else result = Insert(po);
 
             return result;
@@ -94,7 +106,30 @@ namespace DataMapping
         {
             var list = db.ComponentGroups.ToList();
             return list;
-        } 
+        }
+
+        #endregion
+
+        #region Product and ProductComponent
+        
+        public IEnumerable<Product> GetProducts()
+        {
+            var list = db.Products.ToList();
+            return list;
+        }
+
+        public IEnumerable<ProductComponent> GetProductComponents(Product product)
+        {
+            var list = db.ProductComponents.Where(pc => pc.ProductGuid == product.ProductGuid).ToList();
+            return list;
+        }
+
+        public ProductComponent GetProductComponent(Product product, Component component)
+        {
+            return db.ProductComponents.Where(pc => pc.ProductGuid == product.ProductGuid &&
+                                                    pc.ComponentGuid == component.ComponentGuid)
+                                                    .FirstOrDefault();
+        }
 
         #endregion
     }

@@ -15,7 +15,7 @@ namespace Ascored
 {
     public partial class MainForm : Form
     {
-        DbService db = new DbService();
+        DbService db = DbService.Instance;
         char[] arrows = new char[]{ '▲', '▼' };
         private Dictionary<string, string> dctSorting = new Dictionary<string, string>()
         {

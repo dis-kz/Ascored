@@ -63,6 +63,16 @@ namespace Ascored.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add16 {
+            get {
+                object obj = ResourceManager.GetObject("add16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cancel16 {
             get {
                 object obj = ResourceManager.GetObject("cancel16", resourceCulture);
@@ -93,9 +103,29 @@ namespace Ascored.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap data16 {
+            get {
+                object obj = ResourceManager.GetObject("data16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap del16 {
             get {
                 object obj = ResourceManager.GetObject("del16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit16 {
+            get {
+                object obj = ResourceManager.GetObject("edit16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

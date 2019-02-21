@@ -151,8 +151,7 @@ namespace DataModels
 		[Column,        Nullable] public string IP                 { get; set; } // varchar(4)
 		[Column,        Nullable] public string Size               { get; set; } // varchar(50)
 		[Column,        Nullable] public string Weight             { get; set; } // varchar(50)
-		[Column,        Nullable] public string LocalCategory      { get; set; } // varchar(50)
-		[Column,        Nullable] public string FireCategory       { get; set; } // varchar(50)
+		[Column,        Nullable] public string FireSafety         { get; set; } // varchar(50)
 		[Column,        Nullable] public string FireWithstanding   { get; set; } // varchar(50)
 	}
 
